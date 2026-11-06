@@ -21,6 +21,19 @@ Measured values only; a value that has not been measured stays "pending measurem
 
 | Metric | Value |
 |---|---|
-| Tokens (input / output) | pending measurement |
+| Tokens (input / output) | 500917 / 109008 |
 | Hours (human) | pending measurement |
-| Cost (USD) | pending measurement |
+| Cost (USD) | 0.8155 |
+
+## Factory run u035 (measured from API usage)
+
+| Phase | Model | Batch | Input | Output | Cache write | Cache read | Cost (USD) |
+|---|---|---|---|---|---|---|---|
+| generation | claude-sonnet-5-5 | yes | 2817 | 91568 | 0 | 4246 | 0.4611 |
+| fix-1 | claude-sonnet-5-5 | no | 6 | 1068 | 7916 | 42247 | 0.0347 |
+| fix-2 | claude-sonnet-5-5 | no | 12 | 2706 | 12302 | 102174 | 0.0681 |
+| fix-3 | claude-sonnet-5-5 | no | 16 | 6642 | 18668 | 148043 | 0.1279 |
+| fix-4 | claude-sonnet-5-5 | no | 10 | 1806 | 8881 | 75786 | 0.0479 |
+| docs | claude-haiku-5-5 | no | 125560 | 5218 | 0 | 0 | 0.0758 |
+
+Total: $0.8155. Prices: Anthropic list prices.

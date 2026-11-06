@@ -89,7 +89,7 @@ def _parse_probe(raw: object, index: int) -> Probe:
     if not isinstance(raw, dict):
         raise _invalid(f"probe #{index} must be an object")
     keys = set(raw)
-    if not _REQUIRED_FIELDS <= keys or not keys <= _ALLOWED_FIELDS:
+    if not keys >= _REQUIRED_FIELDS or not keys <= _ALLOWED_FIELDS:
         raise _invalid(f"probe #{index} has missing or unknown fields")
     probe = Probe(
         id=raw["id"],

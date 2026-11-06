@@ -59,7 +59,7 @@ def _format_text(report: SuiteReport) -> str:
         head = f"{status:<9} {item.severity:<8} {item.probe_id:<10}"
         line = f"{head} {item.owasp} {item.category} {item.latency_ms:.1f}ms"
         if item.error is not None:
-            line += f" {ascii(item.error)}"
+            line += f" {item.error!a}"
         lines.append(line)
     lines.append(f"{report.succeeded_count} of {len(report.results)} probes succeeded")
     return "\n".join(lines)

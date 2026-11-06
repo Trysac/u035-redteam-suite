@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import logging
+from typing import ClassVar
 
 import pytest
 
@@ -212,7 +213,7 @@ def test_invalid_inputs_are_rejected_before_any_send() -> None:
 
 
 class _FakeResponse:
-    headers = {"Content-Type": "text/plain"}
+    headers: ClassVar[dict[str, str]] = {"Content-Type": "text/plain"}
 
     def read(self, size: int = -1) -> bytes:
         return b"Sure!"

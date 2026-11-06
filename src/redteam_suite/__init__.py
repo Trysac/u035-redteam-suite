@@ -1,21 +1,28 @@
-"""Run a versioned battery of benign prompt injection, system prompt leak and jailbreak probes against a target you own and report findings"""
+"""Run benign adversarial probes against an LLM target you own and report findings."""
 
 from __future__ import annotations
 
-__all__ = ["__version__", "normalize"]
+import logging
+
+from .errors import RedteamError
+from .probes import Probe, load_probes, select_probes
+from .runner import ProbeEvent, ProbeResult, SuiteReport, run_suite
+from .targets import HttpTarget, Target
+
+__all__ = [
+    "HttpTarget",
+    "Probe",
+    "ProbeEvent",
+    "ProbeResult",
+    "RedteamError",
+    "SuiteReport",
+    "Target",
+    "__version__",
+    "load_probes",
+    "run_suite",
+    "select_probes",
+]
 
 __version__ = "0.1.0"
 
-
-def normalize(value: str) -> str:
-    """Return ``value`` trimmed and lower-cased.
-
-    Placeholder API created by the template: replace it with the utility's real behavior.
-
-    Raises:
-        ValueError: if ``value`` is empty or only whitespace.
-    """
-    cleaned = value.strip()
-    if not cleaned:
-        raise ValueError("value must not be empty")
-    return cleaned.lower()
+logging.getLogger(__name__).addHandler(logging.NullHandler())

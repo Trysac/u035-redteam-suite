@@ -1,23 +1,25 @@
-"""Behavior tests for the public API of redteam_suite."""
-
 from __future__ import annotations
 
-import pytest
+import logging
 
 import redteam_suite
 
 
-def test_normalize_trims_and_lowercases() -> None:
-    assert redteam_suite.normalize("  Hello World ") == "hello world"
+def test_public_api_is_exported() -> None:
+    for name in redteam_suite.__all__:
+        assert hasattr(redteam_suite, name)
 
 
-@pytest.mark.parametrize("value", ["", "   ", "\t\n"])
-def test_normalize_rejects_blank_input(value: str) -> None:
-    with pytest.raises(ValueError, match="must not be empty"):
-        redteam_suite.normalize(value)
+def test_version() -> None:
+    assert redteam_suite.__version__ == "0.1.0"
 
 
-def test_version_is_semver() -> None:
-    parts = redteam_suite.__version__.split(".")
-    assert len(parts) == 3
-    assert all(part.isdigit() for part in parts)
+def test_null_handler_is_installed() -> None:
+    handlers = logging.getLogger("redteam_suite").handlers
+    assert any(isinstance(handler, logging.NullHandler) for handler in handlers)
+
+
+def test_error_code_and_message_cap() -> None:
+    error = redteam_suite.RedteamError("unknown_probe", "x" * 500)
+    assert error.code == "unknown_probe"
+    assert len(str(error)) == 200

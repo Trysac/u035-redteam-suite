@@ -19,6 +19,9 @@ classifiers = [
 ]
 dependencies = []
 
+[project.scripts]
+redteam-suite = "redteam_suite.__main__:main"
+
 [project.urls]
 Homepage = "https://github.com/Trysac/u035-redteam-suite"
 Source = "https://github.com/Trysac/u035-redteam-suite"
